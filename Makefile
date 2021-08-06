@@ -1,10 +1,10 @@
-prefix = /usr/local
-libdir = $(prefix)/lib
+prefix = /usr
+libdir = $(prefix)/lib64
 OBJS = fsync.o open.o
-CFLAGS = -O2 -g
+CFLAGS ?= -Ofast
 
 nosync.so: $(OBJS)
-	$(CC) -shared -fPIC -ldl -lpthread $(CFLAGS) -o $@ $+
+	$(CC) -shared -fPIC $(CFLAGS) -o $@ $+ -ldl -lpthread
 
 %.o: %.c
 	$(CC) -c -fPIC $(CFLAGS) -o $@ $+
