@@ -19,7 +19,7 @@ test_nosync: test_nosync.c
 	$(CC) $(CFLAGS) -o $@ $+
 
 test: test_nosync $(LIBRARY)
-	LD_LIBRARY=$(srcdir)/$(LIBRARY) ./test_nosync
+	LD_PRELOAD=$(srcdir)/$(LIBRARY) ./test_nosync
 
 clean:
 	@rm -f $(OBJS) nosync.so test_nosync
